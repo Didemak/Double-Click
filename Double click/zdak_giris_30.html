@@ -1,0 +1,53 @@
+<!DOCTY "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="application/xht />
+<title>ZDAK_GIRIS_30</title>
+</head>
+<body>
+<table class="outerTable">
+  <tr class="normalBoldLarge">
+     <td><h2>Code listing for: ZDAK_GIRIS_30</h2>
+<h3> Description: </h3></td>
+   </tr>
+  <tr>
+     <td>
+     <table class="innerTable">
+       <tr>
+          <td>
+   <div class="codeComment">
+*&---------------------------------------------------------------------*<br />
+*&&nbsp;Report&nbsp;ZDAK_GIRIS_30<br />
+*&---------------------------------------------------------------------*<br />
+*&<br />
+*&---------------------------------------------------------------------*<br />
+   </div>
+   <div class="code">
+REPORT zdak_giris_30.<br />
+<br />
+TYPE-POOLS slis.<br />
+TABLES: sflight, sbook.<br />
+DATA gt_sflight LIKE TABLE OF sflight.<br />
+DATA gv_msg1 TYPE sflight-connid.<br />
+<br />
+SELECT-OPTIONS: so_conn FOR sflight-connid NO INTERVALS,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;so_date&nbsp;FOR&nbsp;sflight-fldate.<br />
+<br />
+gv_msg1 = so_conn-low."aralýktaki küçük deðeri aldý.<br />
+<br />
+SELECT * FROM sflight INTO TABLE gt_sflight<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WHERE&nbsp;connid&nbsp;IN&nbsp;so_conn<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AND&nbsp;fldate&nbsp;IN&nbsp;so_date.<br />
+<br />
+IF sy-subrc IS NOT INITIAL.<br />
+&nbsp;&nbsp;MESSAGE&nbsp;i000(zdak_egitim_msg)&nbsp;WITH&nbsp;gv_msg1.<br />
+<br />
+ENDIF.<br />
+<br />
+include <a href ="zdak_alv_sflight.html">zdak_alv_sflight</a>.<br />
+            </div>
+          </td>
+        </tr>
+      </table>
+      </td>
+      </tr>
